@@ -1,57 +1,36 @@
-/***********************************************************************************************
- * User Configuration.
- **********************************************************************************************/
-/** Map relative paths to URLs. */
-const map: any = {
-};
-
-/** User packages configuration. */
-const packages: any = {
-};
-
-////////////////////////////////////////////////////////////////////////////////////////////////
-/***********************************************************************************************
- * Everything underneath this line is managed by the CLI.
- **********************************************************************************************/
-const barrels: string[] = [
-  // Angular specific barrels.
-  '@angular/core',
-  '@angular/common',
-  '@angular/compiler',
-  '@angular/http',
-  '@angular/router',
-  '@angular/platform-browser',
-  '@angular/platform-browser-dynamic',
-
-  // Thirdparty barrels.
-  'rxjs',
-
-  // App specific barrels.
-  'app',
-  'app/shared',
-  'app/cockpit',
-  'app/login',
-  'app/settings',
-  /** @cli-barrel */
-];
-
-const cliSystemConfigPackages: any = {};
-barrels.forEach((barrelName: string) => {
-  cliSystemConfigPackages[barrelName] = { main: 'index' };
-});
-
-/** Type declaration for ambient System. */
-declare var System: any;
-
-// Apply the CLI SystemJS configuration.
-System.config({
-  map: {
-    '@angular': 'vendor/@angular',
-    'rxjs': 'vendor/rxjs',
-    'main': 'main.js'
-  },
-  packages: cliSystemConfigPackages
-});
-
-// Apply the user's configuration.
-System.config({ map, packages });
+(function(global) {
+    // map tells the System loader where to look for things
+    var map = {
+        'app':                        'app', // 'dist',
+        'rxjs':                       'node_modules/rxjs',
+        'angular2-in-memory-web-api': 'node_modules/angular2-in-memory-web-api',
+        '@angular':                   'node_modules/@angular'
+    };
+    // packages tells the System loader how to load when no filename and/or no extension
+    var packages = {
+        'app':                        { main: 'main.js',  defaultExtension: 'js' },
+        'rxjs':                       { defaultExtension: 'js' },
+        'angular2-in-memory-web-api': { defaultExtension: 'js' },
+    };
+    var packageNames = [
+        '@angular/common',
+        '@angular/compiler',
+        '@angular/core',
+        '@angular/http',
+        '@angular/platform-browser',
+        '@angular/platform-browser-dynamic',
+        '@angular/router',
+        '@angular/router-deprecated',
+        '@angular/testing',
+        '@angular/upgrade',
+    ];
+    // add package entries for angular packages in the form '@angular/common': { main: 'index.js', defaultExtension: 'js' }
+    packageNames.forEach(function(pkgName) {
+        packages[pkgName] = { main: 'index.js', defaultExtension: 'js' };
+    });
+    var config = {
+        map: map,
+        packages: packages
+    }
+    System.config(config);
+})(this);
