@@ -11,6 +11,6 @@ charset = utf-8
 trim_trailing_whitespace = true
 
 # Indent 4 spaces for PHP & JS
-[*.{php,js,ts,tsx}]
+[*.{js,ts,tsx}]
 indent_style = space
 indent_size = 4
