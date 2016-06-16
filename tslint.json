@@ -82,13 +82,13 @@
     ],
     "max-line-length": [
       true,
-      100
+      300
     ],
     "no-require-imports": false,
-    "no-trailing-whitespace": true,
+    "no-trailing-whitespace": false,
     "object-literal-sort-keys": false,
     "trailing-comma": [
-      true,
+      false,
       {
         "multiline": "never",
         "singleline": "never"
@@ -98,7 +98,7 @@
     "align": false,
     "class-name": true,
     "comment-format": [
-      true,
+      false,
       "check-space"
     ],
     "interface-name": false,
@@ -113,11 +113,7 @@
       "check-finally",
       "check-whitespace"
     ],
-    "quotemark": [
-      true,
-      "single",
-      "avoid-escape"
-    ],
+    "quotemark": false,
     "semicolon": [true, "always"],
     "variable-name": [
       true,

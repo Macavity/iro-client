@@ -9,8 +9,8 @@ import { LoginComponent } from "./modules/login/login.component";
 import { SettingsComponent } from "./settings/settings.component";
 
 // Services
-import { ApiService } from "./modules/api/api.service";
-import { UserService } from "./modules/user/user.service";
+import { ApiService } from './modules/api/api.service';
+import { UserService } from './modules/user/user.service';
 
 @RouteConfig([
     <RouteDefinition> {
@@ -49,23 +49,21 @@ import { UserService } from "./modules/user/user.service";
         UserService
     ]
 })
-export class IroClientAppComponent implements OnInit
-{
+export class IroClientAppComponent implements OnInit {
 
     public isLoggedIn = false;
 
-    constructor(@Inject(UserService) private userService: UserService, @Inject(Router) private router: Router)
-    {
+    constructor(
+        @Inject(UserService) private userService: UserService,
+        @Inject(Router) private router: Router) {
         //
     }
 
-    ngOnInit()
-    {
+    ngOnInit() {
         this.userService.isLoggedIn.subscribe(this.onLoginStatusChange);
     }
 
-    onLoginStatusChange = (response) =>
-    {
+    onLoginStatusChange = (response) => {
         this.isLoggedIn = response;
         if (this.isLoggedIn) {
             this.router.navigate(['/Dashboard']);

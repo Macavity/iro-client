@@ -1,0 +1,35 @@
+<navbar-top></navbar-top>
+
+<!-- Page container -->
+<div class="page-container">
+
+  <!-- Page content -->
+  <div class="page-content">
+    <!-- Main Sidebar -->
+    <sidebar></sidebar>
+    <!-- /main sidebar -->
+
+    <!-- Main content -->
+    <div class="content-wrapper">
+      <router-outlet></router-outlet>
+    </div>
+    <!-- /main content -->
+
+  </div>
+  <!-- /page content -->
+
+</div>
+<!-- /page container -->
+
+<span router-active>
+      <button [routerLink]=" ['Index'] ">
+        Index
+      </button>
+    </span>
+<span router-active>
+      <button [routerLink]=" ['About'] ">
+        About
+      </button>
+    </span>
+
+<pre class="app-state">this.appState.state = {{ appState.state | json }}</pre>
