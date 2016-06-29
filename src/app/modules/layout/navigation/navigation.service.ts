@@ -2,6 +2,7 @@
 import { Input, Injectable } from "@angular/core";
 import { Navigation, NavigationCategory, NavigationEntry } from './navigation.model';
 import { User } from '../../user/user';
+import { UserService } from '../../user/user.service';
 
 /**
  * NavigationService
@@ -11,17 +12,18 @@ import { User } from '../../user/user';
 @Injectable()
 export class NavigationService {
 
-    @Input isLoggedIn: boolean = false;
-    @Input currentUser: User;
-
     topnav: Navigation;
     sidebar: Navigation;
 
-    constructor() {
+    constructor(
+        private userService: UserService
+    ) {
 
-        if (this.isLoggedIn) {
+        console.log("NavigationService", "isLoggedIn", this.userService.isLoggedIn);
+
+        if (this.userService.isLoggedIn.value) {
             this.topnav = new Navigation([
-
+                new NavigationEntry("Account", "/Account", "icon-user"),
             ]);
         } else {
             this.topnav = new Navigation([

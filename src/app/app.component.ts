@@ -7,14 +7,21 @@ import { RouteConfig, Router } from '@angular/router-deprecated';
 import { AppState } from './app.service';
 import { Home } from './home/home.component';
 import { RouterActive } from './router-active/router-active.directive';
-import { Language } from './modules/language/language.model';
 
+// General
+import { ApiService } from './modules/api/api.service';
+import { Language } from './modules/language/language.model';
+import { LanguageService } from './modules/language/language.service';
+
+// Layout
 import { SidebarComponent } from './modules/layout/sidebar/sidebar.component';
 import { NavbarTopComponent } from './modules/layout/navbar-top/navbar-top.component';
+import { NavigationService } from './modules/layout/navigation/navigation.service';
 
-import { ApiService } from './modules/api/api.service';
-import { LanguageService } from './modules/language/language.service';
+// User
+import { User } from './modules/user/user';
 import { UserService } from './modules/user/user.service';
+
 
 /*
  * App Component
@@ -26,12 +33,13 @@ import { UserService } from './modules/user/user.service';
     providers: [
         ApiService,
         LanguageService,
-        UserService
+        UserService,
+        NavigationService
     ],
     directives: [
-        <Type> RouterActive,
-        <Type> NavbarTopComponent,
-        <Type> SidebarComponent
+        RouterActive,
+        NavbarTopComponent,
+        SidebarComponent
     ],
     encapsulation: ViewEncapsulation.None,
     template: require('./modules/layout/layout-fixed.html')
@@ -50,15 +58,23 @@ export class App implements OnInit {
     name = 'Angular 2 Webpack Starter';
     url = 'https://twitter.com/AngularClass';
 
+    isLoggedIn: boolean;
+    user: User;
+
     languages: Language[];
 
+
     constructor(
-        public appState: AppState) {
+        public appState: AppState,
+        private userService: UserService
+    ) {
 
     }
 
     ngOnInit() {
         console.log('Initial App State', this.appState.state);
+
+        this.isLoggedIn = this.userService.isLoggedIn.value;
     }
 }
 
