@@ -6,7 +6,11 @@
   <!-- Page content -->
   <div class="page-content">
     <!-- Main Sidebar -->
-    <sidebar></sidebar>
+    <div class="sidebar sidebar-main" [hidden]="hideSidebar">
+      <div class="sidebar-content">
+        <sidebar></sidebar>
+      </div>
+    </div>
     <!-- /main sidebar -->
 
     <!-- Main content -->
@@ -15,21 +19,14 @@
     </div>
     <!-- /main content -->
 
+    <div class="debug-bar" [hidden]="true">
+      <pre class="app-state">this.appState.state = {{ appState.state | json }}</pre>
+    </div>
+
   </div>
   <!-- /page content -->
 
 </div>
 <!-- /page container -->
 
-<span router-active>
-      <button [routerLink]=" ['Index'] ">
-        Index
-      </button>
-    </span>
-<span router-active>
-      <button [routerLink]=" ['About'] ">
-        About
-      </button>
-    </span>
 
-<pre class="app-state">this.appState.state = {{ appState.state | json }}</pre>

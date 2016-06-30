@@ -2,7 +2,7 @@
  * Angular 2 decorators and services
  */
 import { Component, Type, ViewEncapsulation, OnInit } from '@angular/core';
-import { RouteConfig, Router } from '@angular/router-deprecated';
+import { RouteConfig, Router, RouteDefinition } from '@angular/router-deprecated';
 
 import { AppState } from './app.service';
 import { Home } from './home/home.component';
@@ -21,6 +21,8 @@ import { NavigationService } from './modules/layout/navigation/navigation.servic
 // User
 import { User } from './modules/user/user';
 import { UserService } from './modules/user/user.service';
+import { CockpitComponent } from './modules/cockpit/cockpit.component';
+import {LoginComponent} from './modules/login/login.component';
 
 
 /*
@@ -44,13 +46,25 @@ import { UserService } from './modules/user/user.service';
     encapsulation: ViewEncapsulation.None,
     template: require('./modules/layout/layout-fixed.html')
 })
-@RouteConfig([
-  { path: '/',      name: 'Index', component: Home, useAsDefault: true },
-  { path: '/dashboard',
-      name: 'Dashboard',
-      component: Home },
-  // Async load a component using Webpack's require with es6-promise-loader and webpack `require`
-  { path: '/about', name: 'About', loader: () => require('es6-promise!./about')('About') }
+@RouteConfig( <Array<RouteDefinition>> [
+    {
+        path: '/',
+        name: 'Index',
+        component: Home,
+        useAsDefault: true
+    },
+    {
+        path: '/login',
+        name: 'Login',
+        component: LoginComponent
+    },
+    {
+        path: '/dashboard',
+        name: 'Dashboard',
+        component: CockpitComponent
+    },
+    // Async load a component using Webpack's require with es6-promise-loader and webpack `require`
+    { path: '/about', name: 'About', loader: () => require('es6-promise!./about')('About') }
 ])
 export class App implements OnInit {
     angularclassLogo = 'assets/img/angularclass-avatar.png';
@@ -75,6 +89,9 @@ export class App implements OnInit {
         console.log('Initial App State', this.appState.state);
 
         this.isLoggedIn = this.userService.isLoggedIn.value;
+
+        this.appState.state().hideSidebar.subscribe();
+
     }
 }
 

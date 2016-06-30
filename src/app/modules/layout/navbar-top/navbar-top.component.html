@@ -4,11 +4,23 @@
 
     <ul class="nav navbar-nav pull-right visible-xs-block">
       <li><a data-toggle="collapse" data-target="#navbar-mobile"><i class="icon-tree5"></i></a></li>
+      <li><a class="sidebar-mobile-main-toggle"><i class="icon-paragraph-justify3"></i></a></li>
     </ul>
   </div>
   <div class="navbar-collapse collapse" id="navbar-mobile">
+    <!-- Left Side -->
+    <ul class="nav navbar-nav">
+      <!-- Collapse Sidebar -->
+      <li>
+        <a class="sidebar-control sidebar-main-toggle hidden-xs" data-popup="tooltip" title="Collapse Sidebar" data-placement="bottom" data-container="body">
+          <i class="icon-paragraph-justify3"></i>
+        </a>
+      </li>
+    </ul>
+
+    <!-- Right Side -->
     <ul class="nav navbar-nav navbar-right">
-      <li *ngFor="let entry of topnav">
+      <li *ngFor="let entry of entries">
         <a [routerLink]="[entry.route]">
           <i [class]="entry.icon" *ngIf="entry.icon"></i>
           <span class="visible-xs-inline-block position-right"> {{entry.label}}</span>
