@@ -3,22 +3,41 @@
  */
 
 // Angular 2
-import { FORM_PROVIDERS, HashLocationStrategy, LocationStrategy } from '@angular/common';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 // Angular 2 Http
 import { HTTP_PROVIDERS } from '@angular/http';
 // Angular 2 Router
-import { ROUTER_PROVIDERS } from '@angular/router-deprecated';
+import { provideRouter } from '@angular/router';
+// Angular 2 forms
+import { disableDeprecatedForms, provideForms } from '@angular/forms';
 
+// Angular 2 Material
+// TODO(gdi2290): replace with @angular2-material/all
+import { MATERIAL_PROVIDERS } from './browser/angular2-material2';
+
+// AngularClass
+import { provideWebpack } from '@angularclass/webpack-toolkit';
+import { providePrefetchIdleCallbacks } from '@angularclass/request-idle-callback';
+
+
+import { routes, asyncRoutes, prefetchRouteCallbacks } from '../app/app.routes';
 /*
 * Application Providers/Directives/Pipes
 * providers/directives/pipes that only live in our browser environment
 */
 export const APPLICATION_PROVIDERS = [
-  ...FORM_PROVIDERS,
+  // new Angular 2 forms
+  disableDeprecatedForms(),
+  provideForms(),
+
+  provideRouter(routes),
+  provideWebpack(asyncRoutes),
+  providePrefetchIdleCallbacks(prefetchRouteCallbacks),
+
   ...HTTP_PROVIDERS,
-  ...ROUTER_PROVIDERS
-    // Uncomment for HashLocationStrategy
-    // , { provide: LocationStrategy, useClass: HashLocationStrategy }
+  ...MATERIAL_PROVIDERS,
+
+  { provide: LocationStrategy, useClass: HashLocationStrategy }
 ];
 
 export const PROVIDERS = [
