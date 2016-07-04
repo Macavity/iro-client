@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 /*
  * We're loading this component asynchronously
@@ -9,7 +9,7 @@ import { Component } from '@angular/core';
 console.log('`About` component loaded asynchronously');
 
 @Component({
-  selector: 'about',
+  selector: 'page-about',
   styles: [`
     h1 {
       font-family: Arial, Helvetica, sans-serif
@@ -31,7 +31,7 @@ console.log('`About` component loaded asynchronously');
 
   `
 })
-export class About {
+export class AboutComponent implements OnInit {
   constructor() {
 
   }

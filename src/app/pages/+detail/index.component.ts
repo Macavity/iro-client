@@ -1,8 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ROUTER_DIRECTIVES } from '@angular/router';
 
 @Component({
-  selector: 'index',
+  selector: 'detail-index',
   directives: [
     ...ROUTER_DIRECTIVES
   ],
@@ -10,7 +10,7 @@ import { ROUTER_DIRECTIVES } from '@angular/router';
     <router-outlet></router-outlet>
   `
 })
-export class Index {
+export class DetailIndexComponent implements OnInit{
   constructor() {
 
   }
