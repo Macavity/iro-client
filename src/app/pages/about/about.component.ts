@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 /*
  * We're loading this component asynchronously
@@ -25,21 +26,31 @@ console.log('`About` component loaded asynchronously');
       patrick@AngularClass.com
     </h3>
   </md-card>
+    <pre>this.localState = {{ localState | json }}</pre>
 
   `
 })
 export class AboutComponent implements OnInit {
-  constructor() {
+    localState;
 
-  }
+    constructor(public route: ActivatedRoute) {
 
-  ngOnInit() {
-    console.log('hello `About` component');
-    // static data that is bundled
-    // var mockData = require('assets/mock-data/mock-data.json');
-    // console.log('mockData', mockData);
-    // if you're working with mock data you can also use http.get('assets/mock-data/mock-data.json')
-    // this.asyncDataWithWebpack();
+    }
+
+    ngOnInit() {
+        this.route
+            .data
+            .subscribe((data: any) => {
+                // your resolved data from route
+                this.localState = data.yourData;
+            });
+
+        console.log('hello `About` component');
+        // static data that is bundled
+        // var mockData = require('assets/mock-data/mock-data.json');
+        // console.log('mockData', mockData);
+        // if you're working with mock data you can also use http.get('assets/mock-data/mock-data.json')
+        // this.asyncDataWithWebpack();
   }
   asyncDataWithWebpack() {
     // you can also async load mock data with 'es6-promise-loader'

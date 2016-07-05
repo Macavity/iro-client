@@ -1,13 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ROUTER_DIRECTIVES } from '@angular/router';
 
 @Component({
   selector: 'detail-index',
-  directives: [
-    ...ROUTER_DIRECTIVES
-  ],
   template: `
-    <router-outlet></router-outlet>
+    <h1>Hello from DetailIndex</h1>
   `
 })
 export class DetailIndexComponent implements OnInit {

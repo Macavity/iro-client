@@ -1,10 +1,15 @@
 import { Component, OnInit } from '@angular/core';
+import { ROUTER_DIRECTIVES } from '@angular/router';
+
 
 @Component({
   selector: 'candidate-detail',
+    directives: [
+        ...ROUTER_DIRECTIVES
+    ],
 
   template: `
-    <h1>Hello from Detail</h1>
+    <router-outlet></router-outlet>
   `
 })
 export class DetailComponent implements OnInit {
@@ -15,4 +20,5 @@ export class DetailComponent implements OnInit {
   ngOnInit() {
     console.log('hello `DetailComponent` component');
   }
+    
 }

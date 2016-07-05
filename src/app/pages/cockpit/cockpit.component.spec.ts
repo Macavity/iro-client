@@ -10,11 +10,15 @@ import { ComponentFixture, TestComponentBuilder } from '@angular/compiler/testin
 import { Component, Type } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { CockpitComponent } from './cockpit.component.ts';
+import { AppState } from "../../app.service";
 
 describe('Component: Cockpit', () => {
   let builder: TestComponentBuilder;
 
-  beforeEachProviders(() => [CockpitComponent]);
+  beforeEachProviders(() => [
+      AppState,
+      CockpitComponent
+  ]);
   beforeEach(inject([TestComponentBuilder], function (tcb: TestComponentBuilder) {
     builder = tcb;
   }));

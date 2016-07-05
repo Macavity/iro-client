@@ -18,6 +18,7 @@ import { MATERIAL_PROVIDERS } from './browser/angular2-material2';
 // AngularClass
 import { provideWebpack } from '@angularclass/webpack-toolkit';
 import { providePrefetchIdleCallbacks } from '@angularclass/request-idle-callback';
+import { APP_RESOLVER_PROVIDERS } from '../app/app.resolver';
 
 
 import { routes, asyncRoutes, prefetchRouteCallbacks } from '../app/app.routes';
@@ -29,6 +30,7 @@ export const APPLICATION_PROVIDERS = [
   // new Angular 2 forms
   disableDeprecatedForms(),
   provideForms(),
+  ...APP_RESOLVER_PROVIDERS,
 
   provideRouter(routes),
   provideWebpack(asyncRoutes),

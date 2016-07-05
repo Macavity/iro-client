@@ -3,8 +3,8 @@ import { DetailIndexComponent } from './index.component';
 
 // async components must be named routes for WebpackAsyncRoute
 export const routes = {
-  path: 'detail-index', component: DetailIndexComponent,
+  path: 'detail', component: DetailComponent,
   children: [
-    { path: '', component: DetailComponent }
+    { path: '', component: DetailIndexComponent }
   ]
 };

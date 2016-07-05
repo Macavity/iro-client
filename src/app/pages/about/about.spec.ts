@@ -1,10 +1,10 @@
 import { TestComponentBuilder } from '@angular/compiler/testing';
 import { Component } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import {
   beforeEachProviders,
   describe,
   inject,
-  injectAsync,
   it
 } from '@angular/core/testing';
 
@@ -14,6 +14,14 @@ import { AboutComponent } from './about.component';
 describe('About', () => {
   // provide our implementations or mocks to the dependency injector
   beforeEachProviders(() => [
+      {
+        provide: ActivatedRoute,
+          useValue: {
+              data: {
+                  subscribe: (fn) => fn({data: "yolo"})
+              }
+          }
+      },
       AboutComponent
   ]);
 

@@ -1,6 +1,7 @@
 /*
  * Providers provided by Angular
  */
+import { Type } from '@angular/core';
 import { bootstrap } from '@angular/platform-browser-dynamic';
 /*
 * Platform and Environment
@@ -9,12 +10,11 @@ import { bootstrap } from '@angular/platform-browser-dynamic';
 import { PLATFORM_PROVIDERS } from './platform/browser';
 import { ENV_PROVIDERS, decorateComponentRef } from './platform/environment';
 
-
 /*
 * App Component
 * our top level component that holds all of our components
 */
-import { App, APP_PROVIDERS } from './app/index';
+import { AppComponent, APP_PROVIDERS } from './app/index';
 
 /*
  * Bootstrap our Angular app with a top level component `App` and inject
@@ -22,7 +22,7 @@ import { App, APP_PROVIDERS } from './app/index';
  */
 export function main(initialHmrState?: any): Promise<any> {
 
-  return bootstrap(<Function> App, [
+  return bootstrap(<Type> AppComponent, [
     // To add more vendor providers please look in the platform/ folder
     ...PLATFORM_PROVIDERS,
     ...ENV_PROVIDERS,

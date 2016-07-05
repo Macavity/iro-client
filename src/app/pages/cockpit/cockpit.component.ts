@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Title } from '../home/title/title.service';
 import { AppState } from '../../app.service';
 
 @Component({
     selector: 'app-cockpit',
     moduleId: module.id,
-    providers: [ Title ],
+    providers: [ ],
     directives: [ ],
     pipes: [],
     styles: [],
@@ -13,9 +12,10 @@ import { AppState } from '../../app.service';
 })
 export class CockpitComponent implements OnInit {
 
-  constructor(public appState: AppState, public title: Title) {}
+  constructor(public appState: AppState) {}
 
   ngOnInit() {
+      
   }
 
 }
