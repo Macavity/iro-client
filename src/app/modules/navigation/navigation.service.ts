@@ -1,8 +1,7 @@
 
 import { Input, Injectable } from "@angular/core";
 import { Navigation, NavigationCategory, NavigationEntry } from './navigation.model';
-import { User } from '../../user/user';
-import { UserService } from '../../user/user.service';
+import { UserService } from '../user/user.service';
 
 /**
  * NavigationService

@@ -1,12 +1,11 @@
 
 import { Component, Input } from '@angular/core';
-import { Language } from '../../language/language.model';
 
 import { NavigationEntry } from '../navigation/navigation.model';
 import { NavigationService } from '../navigation/navigation.service';
 
 @Component({
-    selector: 'sidebar',
+    selector: 'iro-sidebar',
     template: require('./sidebar.component.html')
 })
 export class SidebarComponent {
