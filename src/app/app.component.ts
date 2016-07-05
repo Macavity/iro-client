@@ -15,50 +15,41 @@ import { AppState } from './app.service';
 
 // Layout
 import { UserService } from './modules/user/user.service';
-import { SidebarComponent } from './modules/layout/sidebar/sidebar.component';
-import { NavbarTopComponent } from './modules/layout/navbar-top/navbar-top.component';
+import { SidebarComponent } from './layout/page-sidebar/sidebar.component';
+import { NavbarTopComponent } from './layout/navbar-top/navbar-top.component';
 
 /*
  * App Component
  * Top Level Component
  */
-@Component(<any> {
-    selector: 'app',
+@Component({
+    selector: 'iro-app',
     directives: [
         NavbarTopComponent,
         SidebarComponent
     ],
     encapsulation: ViewEncapsulation.None,
-    template: require('./modules/layout/layout-fixed.html')
+    template: require('./layout/layout-fixed.html')
 })
-export class App implements OnInit {
-    loading = false;
+export class AppComponent implements OnInit {
+    public loading: boolean = false;
 
-    hideSidebar = false;
+    public sidebarCollapsed: boolean = false;
 
     @ViewChild('sidebar') sidebar: ElementRef;
 
-    constructor(
+    public constructor(
         public appState: AppState,
         private userService: UserService
     ) {
-
+        
     }
 
-    ngOnInit() {
+    public ngOnInit(): void {
         console.log('Initial App State', this.appState.state);
-
+        
     }
 
-    toggleSidebar() {
-        //let hideSidebar = this.appState.get('hideSidebar');
-        console.log(this.hideSidebar);
-        if (this.hideSidebar) {
-            this.hideSidebar = false;
-        } else {
-            this.hideSidebar = true;
-        }
-    }
 }
 
 /*

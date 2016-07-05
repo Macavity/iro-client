@@ -14,9 +14,6 @@ console.log('`About` component loaded asynchronously');
     h1 {
       font-family: Arial, Helvetica, sans-serif
     }
-    md-card{
-      margin: 25px;
-    }
   `],
   template: `
   <md-card>

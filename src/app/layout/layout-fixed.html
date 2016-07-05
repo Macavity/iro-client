@@ -1,77 +1,10 @@
 
 <nav class="navbar navbar-inverse navbar-fixed-top">
-  <div class="navbar-header">
-    <a class="navbar-brand" [routerLink]="['/Dashboard']">iRO</a>
-
-    <ul class="nav navbar-nav pull-right visible-xs-block">
-      <li><a (click)="toggleSidebar()"><i class="icon-paragraph-justify3"></i></a></li>
-    </ul>
-  </div>
-  <div class="navbar-collapse collapse" id="navbar-mobile">
-    <!-- Left Side -->
-    <ul class="nav navbar-nav">
-      <!-- Collapse Sidebar -->
-      <li>
-        <a title="Collapse Sidebar"
-           (click)="toggleSidebar()"
-           class="hidden-xs"
-           data-popup="tooltip"
-           data-placement="bottom"
-           data-container="body">
-          <i class="icon-paragraph-justify3"></i>
-        </a>
-      </li>
-    </ul>
-
-    <!-- Right Side -->
-    <ul class="nav navbar-nav navbar-right">
-      <li *ngFor="let entry of entries">
-        <a [routerLink]="[entry.route]">
-          <i [class]="entry.icon" *ngIf="entry.icon"></i>
-          <span class="visible-xs-inline-block position-right"> {{entry.label}}</span>
-        </a>
-      </li>
-      <!-- Language Switch -->
-      <li class="dropdown language-switch" *ngIf="isLoggedIn">
-        <a class="dropdown-toggle" data-toggle="dropdown">
-          <img [src]="currentLanguage.icon" class="position-left" alt="">
-          @{{ currentLanguage.label }}
-          <span class="caret"></span>
-        </a>
-
-        <ul class="dropdown-menu">
-          <li *ngFor="let lang of languages"><a (click)="changeLanguage(lang)"><img [src]="lang.icon" alt=""> @{{ lang.label }}</a></li>
-        </ul>
-      </li>
-
-      <!-- Profile -->
-      <li class="dropdown dropdown-user" *ngIf="isLoggedIn">
-        <a class="dropdown-toggle" data-toggle="dropdown">
-          <div class="btn bg-success-400 btn-rounded btn-icon btn-xs">
-            <span class="letter-icon">A</span>
-          </div>
-          <span>@{{user.name}}</span>
-          <i class="caret"></i>
-        </a>
-
-        <ul class="dropdown-menu dropdown-menu-right">
-          <li><a href="#"><i class="icon-user-plus"></i> My profile</a></li>
-          <li><a href="#">
-            <span class="badge badge-warning pull-right" *ngIf="user.messages.length > 0">@{{ user.messages.length }}</span>
-            <i class="icon-comment-discussion"></i> Messages</a>
-          </li>
-          <li><a href="#"><i class="icon-cog5"></i> Account settings</a></li>
-          <li class="divider"></li>
-          <li><a (click)="logout()"><i class="icon-switch2"></i> Logout</a></li>
-        </ul>
-      </li>
-
-    </ul>
-  </div>
+  <navbar-top></navbar-top>
 </nav>
 
 <!-- Page container -->
-<div class="page-container" [class.sidebar-xs]="hideSidebar">
+<div class="page-container" [class.sidebar-xs]="sidebarCollapsed">
 
   <!-- Page content -->
   <div class="page-content">
@@ -79,7 +12,7 @@
     <!-- Sidebar -->
     <div #sidebar class="sidebar sidebar-main">
       <div class="sidebar-content">
-        <sidebar></sidebar>
+        <page-sidebar></page-sidebar>
       </div>
     </div>
 

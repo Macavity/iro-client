@@ -25,7 +25,7 @@ describe('Component: Cockpit', () => {
   }));
 
   it('should create the component', inject([], () => {
-    return builder.createAsync(<Type>CockpitComponentTestController)
+    return builder.createAsync(<Type>TestCockpitComponent)
       .then((fixture: ComponentFixture<any>) => {
         let query = fixture.debugElement.query(By.directive(<Type>CockpitComponent));
         expect(query).toBeTruthy();
@@ -41,6 +41,6 @@ describe('Component: Cockpit', () => {
   `,
   directives: [CockpitComponent]
 })
-class CockpitComponentTestController {
+class TestCockpitComponent {
 }
 

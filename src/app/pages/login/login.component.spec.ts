@@ -25,7 +25,7 @@ describe('Component: Login', () => {
   }));
 
   it('should create the component', inject([], () => {
-    return builder.createAsync(<Type>LoginComponentTestController)
+    return builder.createAsync(<Type>TestLoginComponent)
       .then((fixture: ComponentFixture<any>) => {
         let query = fixture.debugElement.query(By.directive(<Type>LoginComponent));
         expect(query).toBeTruthy();
@@ -41,6 +41,6 @@ describe('Component: Login', () => {
   `,
   directives: [LoginComponent]
 })
-class LoginComponentTestController {
+class TestLoginComponent {
 }
 

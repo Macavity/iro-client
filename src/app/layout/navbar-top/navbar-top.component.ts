@@ -1,10 +1,10 @@
 
 import { Component, Input } from '@angular/core';
-import { Language } from '../../language/language.model';
 
-import { NavigationService } from '../navigation/navigation.service';
-import { NavigationEntry } from '../navigation/navigation.model';
-import { User } from '../../user/user';
+import { NavigationService } from '../../modules/navigation/navigation.service';
+import { NavigationEntry } from '../../modules/navigation/navigation.model';
+import { Language } from '../../modules/language/language.model';
+import { User } from '../../modules/user/user';
 
 @Component({
     selector: 'navbar-top',
@@ -24,5 +24,8 @@ export class NavbarTopComponent {
 
         this.entries = this.service.topnav.getChildren();
     }
-
+    
+    toggleSidebar() {
+        
+    }
 }

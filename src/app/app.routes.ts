@@ -1,17 +1,18 @@
+import { Type } from '@angular/core';
 import { WebpackAsyncRoute } from '@angularclass/webpack-toolkit';
 import { RouterConfig } from '@angular/router';
-import { Home } from './home';
-import { NoContent } from './no-content';
-import { LoginComponent } from './modules/login/login.component';
+import { LoginComponent } from './pages/login';
+import { HomeComponent } from './pages/home';
+import { NoContentComponent } from './pages/no-content/no-content';
 
 export const routes: RouterConfig = [
-    { path: '', component: Home },
-    { path: 'home', component: Home },
-    { path: 'login', component: LoginComponent },
-    { path: 'about', component: 'About' },
+    { path: '', component: <Type> HomeComponent },
+    { path: 'home', component: <Type> HomeComponent },
+    { path: 'login', component: <Type> LoginComponent },
+    { path: 'about', component: 'AboutComponent' },
     // async components with children routes must use WebpackAsyncRoute
-    { path: 'detail', component: 'Detail', canActivate: [WebpackAsyncRoute] },
-    { path: '**', component: NoContent },
+    { path: 'detail', component: 'DetailComponent', canActivate: [WebpackAsyncRoute] },
+    { path: '**', component: <Type> NoContentComponent },
 ];
 
 // Async load a component using Webpack's require with es6-promise-loader and webpack `require`
@@ -20,16 +21,16 @@ export const routes: RouterConfig = [
 
 export const asyncRoutes: AsyncRoutes = {
     // we have to use the alternative syntax for es6-promise-loader to grab the routes
-    'About': require('es6-promise-loader!./about'),
-    'Detail': require('es6-promise-loader!./+detail'),
+    'AboutComponent': require('es6-promise-loader!./pages/about'),
+    'DetailComponent': require('es6-promise-loader!./pages/detail'),
 };
 
 
 // Optimizations for initial loads
 // An array of callbacks to be invoked after bootstrap to prefetch async routes
 export const prefetchRouteCallbacks: Array<IdleCallbacks> = [
-    asyncRoutes['About'],
-    asyncRoutes['Detail'],
+    asyncRoutes['AboutComponent'],
+    asyncRoutes['DetailComponent'],
     // es6-promise-loader returns a function
 ];
 

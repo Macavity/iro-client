@@ -10,7 +10,7 @@ import { ROUTER_DIRECTIVES } from '@angular/router';
     <router-outlet></router-outlet>
   `
 })
-export class DetailIndexComponent implements OnInit{
+export class DetailIndexComponent implements OnInit {
   constructor() {
 
   }

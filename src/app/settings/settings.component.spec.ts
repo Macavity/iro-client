@@ -7,7 +7,7 @@ import {
   inject,
 } from '@angular/core/testing';
 import { ComponentFixture, TestComponentBuilder } from '@angular/compiler/testing';
-import { Component } from '@angular/core';
+import { Component, Type } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { SettingsComponent } from './settings.component';
 
@@ -25,7 +25,7 @@ describe('Component: Settings', () => {
   }));
 
   it('should create the component', inject([], () => {
-    return builder.createAsync(SettingsComponentTestController)
+    return builder.createAsync(<Type>TestSettingsComponent)
       .then((fixture: ComponentFixture<any>) => {
         let query = fixture.debugElement.query(By.directive(SettingsComponent));
         expect(query).toBeTruthy();
@@ -35,12 +35,12 @@ describe('Component: Settings', () => {
 });
 
 @Component({
-  selector: 'test',
+  selector: 'page-test',
   template: `
     <app-settings></app-settings>
   `,
   directives: [SettingsComponent]
 })
-class SettingsComponentTestController {
+class TestSettingsComponent {
 }
 

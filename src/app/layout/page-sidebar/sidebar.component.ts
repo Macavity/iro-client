@@ -1,11 +1,11 @@
 
 import { Component, Input } from '@angular/core';
 
-import { NavigationEntry } from '../navigation/navigation.model';
-import { NavigationService } from '../navigation/navigation.service';
+import { NavigationEntry } from '../../modules/navigation/navigation.model';
+import { NavigationService } from '../../modules/navigation/navigation.service';
 
 @Component({
-    selector: 'iro-sidebar',
+    selector: 'page-sidebar',
     template: require('./sidebar.component.html')
 })
 export class SidebarComponent {
