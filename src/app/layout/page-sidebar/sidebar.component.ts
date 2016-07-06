@@ -13,8 +13,8 @@ export class SidebarComponent {
     public entries: NavigationEntry[];
 
     constructor(
-        private service: NavigationService
+        private navigationService: NavigationService
     ) {
-        this.entries = this.service.sidebar.getChildren();
+        this.entries = this.navigationService.sidebar;
     }
 }

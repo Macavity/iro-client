@@ -6,7 +6,8 @@ import {
     ViewEncapsulation,
     ViewChild,
     OnInit,
-    ElementRef
+    ElementRef,
+    Type
 } from '@angular/core';
 
 import { AppState } from './app.service';
@@ -17,6 +18,7 @@ import { AppState } from './app.service';
 import { UserService } from './modules/user/user.service';
 import { SidebarComponent } from './layout/page-sidebar/sidebar.component';
 import { NavbarTopComponent } from './layout/navbar-top/navbar-top.component';
+import { Auth } from './modules/auth/auth.service';
 
 /*
  * App Component
@@ -25,8 +27,8 @@ import { NavbarTopComponent } from './layout/navbar-top/navbar-top.component';
 @Component({
     selector: 'iro-app',
     directives: [
-        NavbarTopComponent,
-        SidebarComponent
+        <Type> NavbarTopComponent,
+        <Type> SidebarComponent
     ],
     encapsulation: ViewEncapsulation.None,
     template: require('./layout/layout-fixed.html')
@@ -40,14 +42,15 @@ export class AppComponent implements OnInit {
 
     public constructor(
         public appState: AppState,
-        private userService: UserService
+        private userService: UserService,
+        private auth: Auth
     ) {
-        
+
     }
 
     public ngOnInit(): void {
         console.log('Initial App State', this.appState.state);
-        
+
     }
 
 }

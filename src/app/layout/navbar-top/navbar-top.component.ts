@@ -5,10 +5,11 @@ import { NavigationService } from '../../modules/navigation/navigation.service';
 import { NavigationEntry } from '../../modules/navigation/navigation.model';
 import { Language } from '../../modules/language/language.model';
 import { User } from '../../modules/user/user';
+import { Auth } from '../../modules/auth/auth.service';
 
 @Component({
     selector: 'navbar-top',
-    template: require('./navbar-top.component.html')
+    template: require('./navbar-top.html')
 })
 export class NavbarTopComponent {
 
@@ -19,13 +20,14 @@ export class NavbarTopComponent {
     public entries: NavigationEntry[];
 
     constructor(
-        private service: NavigationService
+        private navigationService: NavigationService,
+        public auth: Auth
     ) {
 
-        this.entries = this.service.topnav.getChildren();
+        this.entries = this.navigationService.topnav;
     }
-    
+
     toggleSidebar() {
-        
+
     }
 }

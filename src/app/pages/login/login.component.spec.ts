@@ -41,7 +41,7 @@ describe('Component: Login', () => {
 @Component(<any>{
     selector: 'test',
     template: `
-    <app-login></app-login>
+    <page-login></page-login>
   `,
     directives: [LoginComponent]
 })

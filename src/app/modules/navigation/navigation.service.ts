@@ -11,8 +11,8 @@ import { UserService } from '../user/user.service';
 @Injectable()
 export class NavigationService {
 
-    topnav: Navigation;
-    sidebar: Navigation;
+    topnav: Array<NavigationEntry> = [];
+    sidebar: Array<NavigationEntry> = [];
 
     constructor(
         private userService: UserService
@@ -20,17 +20,7 @@ export class NavigationService {
 
         console.log("NavigationService", "isLoggedIn", this.userService.isLoggedIn);
 
-        if (this.userService.isLoggedIn.value) {
-            this.topnav = new Navigation([
-                new NavigationEntry("Account", "/Account", "icon-user"),
-            ]);
-        } else {
-            this.topnav = new Navigation([
-                new NavigationEntry("Login", "/Login", "icon-user"),
-            ]);
-        }
-
-        this.sidebar = new Navigation([
+        this.sidebar = [
             new NavigationEntry("Cockpit", "/Cockpit", "", []),
 
             new NavigationEntry("Companies", "/CompanyList", "", [
@@ -40,7 +30,7 @@ export class NavigationService {
             new NavigationEntry("Candidates", "/Candidates", "", [
                 new NavigationEntry("Merkliste", "", "")
             ]),
-        ]);
+        ];
 
     }
 }

@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { AppState } from '../../app.service';
+import { UserService } from '../../modules/user/user.service';
 
 @Component({
     moduleId: module.id,
-    selector: 'app-login',
+    selector: 'page-login',
     styles: [
         '.login-form { width: 320px; margin: 0 auto 20px auto; }'
     ],
@@ -11,11 +12,35 @@ import { AppState } from '../../app.service';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(public appState: AppState) {
-      this.appState.set('hideSidebar', true);
-  }
+    hasEmailError = false;
+    hasGenericError = false;
+    errorMessage = "";
 
-  ngOnInit() {
-  }
+    constructor(public appState: AppState, private userService: UserService) {
+        this.appState.set('hideSidebar', true);
+    }
+
+    ngOnInit() {
+    }
+
+    login(event, email, password) {
+        event.preventDefault();
+
+        this.userService.authenticate(email, password)
+            .catch(
+                error => {
+                    console.warn("error logging in!");
+
+                    const errorType = error.json().error || "default";
+
+                    if (errorType == "invalid_credentials") {
+                        this.hasEmailError = true;
+                    } else {
+                        this.hasGenericError = true;
+                        this.errorMessage = error.json().message;
+                    }
+                }
+            );
+    }
 
 }

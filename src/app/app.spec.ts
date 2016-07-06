@@ -31,8 +31,8 @@ describe('App', () => {
       AppComponent
   ]);
 
-  it('should contain iRO headline in header', inject([ AppComponent ], (app) => {
-    expect(app.url).toEqual('https://twitter.com/AngularClass');
+  it('should not throw an error', inject([ AppComponent ], (app) => {
+    expect(app).toBeTruthy();
   }));
 
 });
