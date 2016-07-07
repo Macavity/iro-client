@@ -9,18 +9,7 @@
   <!-- Page content -->
   <div class="page-content">
 
-    <!-- Sidebar -->
-    <div #sidebar class="sidebar sidebar-main">
-      <div class="sidebar-content">
-        <page-sidebar></page-sidebar>
-      </div>
-    </div>
-
-    <!-- Main content -->
-    <div class="content-wrapper">
-      <router-outlet></router-outlet>
-    </div>
-    <!-- /main content -->
+    <router-outlet></router-outlet>
 
     <div class="debug-bar" [hidden]="true">
       <pre class="app-state">this.appState.state = {{ appState.state | json }}</pre>

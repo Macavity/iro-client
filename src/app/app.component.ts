@@ -16,8 +16,7 @@ import { AppState } from './app.service';
 
 // Layout
 import { UserService } from './modules/user/user.service';
-import { SidebarComponent } from './layout/page-sidebar/sidebar.component';
-import { NavbarTopComponent } from './layout/navbar-top/navbar-top.component';
+import { NavbarTopComponent } from './components/navbar-top/navbar-top.component';
 import { Auth } from './modules/auth/auth.service';
 
 /*
@@ -27,11 +26,10 @@ import { Auth } from './modules/auth/auth.service';
 @Component({
     selector: 'iro-app',
     directives: [
-        <Type> NavbarTopComponent,
-        <Type> SidebarComponent
+        <Type> NavbarTopComponent
     ],
     encapsulation: ViewEncapsulation.None,
-    template: require('./layout/layout-fixed.html')
+    template: require('./components/layout-fixed.html')
 })
 export class AppComponent implements OnInit {
     public loading: boolean = false;

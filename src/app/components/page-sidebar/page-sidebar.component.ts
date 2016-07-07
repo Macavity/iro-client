@@ -6,9 +6,9 @@ import { NavigationService } from '../../modules/navigation/navigation.service';
 
 @Component({
     selector: 'page-sidebar',
-    template: require('./sidebar.component.html')
+    template: require('./page-sidebar.html')
 })
-export class SidebarComponent {
+export class PageSidebarComponent {
 
     public entries: NavigationEntry[];
 

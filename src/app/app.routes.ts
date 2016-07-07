@@ -2,28 +2,22 @@ import { Type } from '@angular/core';
 import { WebpackAsyncRoute } from '@angularclass/webpack-toolkit';
 import { RouterConfig } from '@angular/router';
 import { LoginComponent } from './pages/login';
-import { HomeComponent } from './pages/home';
 import { NoContentComponent } from './pages/no-content/no-content';
 import { DataResolver } from './app.resolver';
+import { PagesComponent } from "./pages/pages.component";
 
 export const routes: RouterConfig = [
-    { path: '', component: <Type> HomeComponent },
-    { path: 'home', component: <Type> HomeComponent },
     { path: 'login', component: <Type> LoginComponent },
-    { path: 'about', component: 'AboutComponent',
-        resolve: {
-            'data': DataResolver
-        }
-    },
+
     // async components with children routes must use WebpackAsyncRoute
-    { path: 'detail', component: 'DetailComponent',
+    { path: 'pages', component: <Type> PagesComponent,
         canActivate: [WebpackAsyncRoute],
         children: [
-            { path: '', component: 'DetailIndexComponent'}
+            { path: 'cockpit', component: 'CockpitComponent'}
         ]
     },
     // Fallback Path
-    { path: '**', component: <Type> NoContentComponent },
+    { path: '**', component: <Type> LoginComponent },
 ];
 
 // Async load a component using Webpack's require with es6-promise-loader and webpack `require`
@@ -32,9 +26,8 @@ export const routes: RouterConfig = [
 
 export const asyncRoutes: AsyncRoutes = {
     // we have to use the alternative syntax for es6-promise-loader to grab the routes
-    'AboutComponent': require('es6-promise-loader!./pages/about'),
-    'DetailComponent': require('es6-promise-loader!./pages/detail'),
-    'DetailIndexComponent': require('es6-promise-loader!./pages/detail'), 
+    'PagesComponent': require('es6-promise-loader!./pages/detail'),
+    'CockpitComponent': require('es6-promise-loader!./pages/detail'),
 };
 
 
