@@ -17,7 +17,7 @@ import { AppState } from './app.service';
 // Layout
 import { UserService } from './modules/user/user.service';
 import { NavbarTopComponent } from './components/navbar-top/navbar-top.component';
-import { Auth } from './modules/auth/auth.service';
+import { AuthService } from './modules/auth/auth.service';
 
 /*
  * App Component
@@ -41,7 +41,7 @@ export class AppComponent implements OnInit {
     public constructor(
         public appState: AppState,
         private userService: UserService,
-        private auth: Auth
+        private auth: AuthService
     ) {
 
     }

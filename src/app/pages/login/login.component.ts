@@ -1,11 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {
-    FORM_DIRECTIVES,
-    FormBuilder,
-    ControlGroup,
-    Validators,
-    AbstractControl
-} from '@angular/common';
+import { NgForm }    from '@angular/forms';
 
 import { AppState } from '../../app.service';
 import { UserService } from '../../modules/user/user.service';
@@ -20,48 +14,47 @@ import { UserService } from '../../modules/user/user.service';
 })
 export class LoginComponent implements OnInit {
 
-    public loginForm: ControlGroup;
-    public email: AbstractControl;
-    public password: AbstractControl;
     public submitted: boolean = false;
+
+    public email: string = "";
+    public password: string = "";
 
     public hasLoginError = false;
     public hasGenericError = false;
     public errorMessage = "";
 
-    constructor(private formBuilder: FormBuilder, private userService: UserService) {
-        this.loginForm = formBuilder.group({
-            'email': ['', Validators.compose([Validators.required, Validators.minLength(4)])],
-            'password': ['', Validators.compose([Validators.required, Validators.minLength(4)])]
-        });
-
-        this.email = this.loginForm.controls['email'];
-        this.password = this.loginForm.controls['password'];
+    constructor(private userService: UserService) {
     }
 
     ngOnInit() {
     }
 
     login(event, email, password) {
+        event.preventDefault();
+
+        console.log("email",email);
+        console.log("pw",password);
+
         this.submitted = true;
 
-        if(this.loginForm.valid) {
-            this.userService.authenticate(email, password)
-                .catch(
-                    error => {
-                        console.warn("error logging in!");
+        let body = JSON.stringify({ email: email, password: password });
 
-                        const errorType = error.json().error || "default";
+        this.userService
+            .authenticate(email, password)
+            .catch(
+                error => {
+                    console.warn("error logging in!");
 
-                        if (errorType == "invalid_credentials") {
-                            this.hasLoginError = true;
-                        } else {
-                            this.hasGenericError = true;
-                            this.errorMessage = error.json().message;
-                        }
+                    const errorType = error.json().error || "default";
+
+                    if (errorType == "invalid_credentials") {
+                        this.hasLoginError = true;
+                    } else {
+                        this.hasGenericError = true;
+                        this.errorMessage = error.json().message;
                     }
-                );
-        }
+                }
+            );
 
     }
 

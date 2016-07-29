@@ -12,7 +12,7 @@ export class UserService {
 
     public currentUser: User;
 
-    constructor(private http: Http, private api: ApiService) {
+    constructor(private api: ApiService) {
         this.isLoggedIn.next(!!localStorage.getItem('jwt'));
     }
 

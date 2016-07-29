@@ -5,19 +5,22 @@ import { LoginComponent } from './pages/login';
 import { NoContentComponent } from './pages/no-content/no-content';
 import { DataResolver } from './app.resolver';
 import { PagesComponent } from "./pages/pages.component";
+import { AuthGuard } from './modules/auth/auth.guard';
+
+// async components with children routes must use WebpackAsyncRoute
 
 export const routes: RouterConfig = [
+    { path: '', component: <Type> LoginComponent },
     { path: 'login', component: <Type> LoginComponent },
 
-    // async components with children routes must use WebpackAsyncRoute
     { path: 'pages', component: <Type> PagesComponent,
-        canActivate: [WebpackAsyncRoute],
+        canActivate: [ AuthGuard ],
         children: [
             { path: 'cockpit', component: 'CockpitComponent'}
         ]
     },
     // Fallback Path
-    { path: '**', component: <Type> LoginComponent },
+    { path: '**', component: <Type> NoContentComponent },
 ];
 
 // Async load a component using Webpack's require with es6-promise-loader and webpack `require`

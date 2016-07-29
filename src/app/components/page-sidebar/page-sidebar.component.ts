@@ -1,5 +1,5 @@
 
-import { Component, Input } from '@angular/core';
+import { Component, Input, Type } from '@angular/core';
 
 import { NavigationEntry } from '../../modules/navigation/navigation.model';
 import { NavigationService } from '../../modules/navigation/navigation.service';

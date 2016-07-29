@@ -5,7 +5,7 @@ import { NavigationService } from '../../modules/navigation/navigation.service';
 import { NavigationEntry } from '../../modules/navigation/navigation.model';
 import { Language } from '../../modules/language/language.model';
 import { User } from '../../modules/user/user';
-import { Auth } from '../../modules/auth/auth.service';
+import { AuthService } from '../../modules/auth/auth.service';
 
 @Component({
     selector: 'navbar-top',
@@ -21,7 +21,7 @@ export class NavbarTopComponent {
 
     constructor(
         private navigationService: NavigationService,
-        public auth: Auth
+        public auth: AuthService
     ) {
 
         this.entries = this.navigationService.topnav;

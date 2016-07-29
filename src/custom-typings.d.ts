@@ -36,6 +36,16 @@ import * as _ from 'lodash'
 declare var ENV: string;
 declare var HMR: boolean;
 
+declare var IRO_CONFIG: IRO_Config;
+
+interface IRO_Config {
+    auth: {
+        domain: string,
+        clientId: string,
+        callbackURL: string
+    }
+}
+
 interface GlobalEnvironment {
   ENV;
   HMR;

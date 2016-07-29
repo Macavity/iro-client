@@ -18,6 +18,8 @@ import { providePrefetchIdleCallbacks } from '@angularclass/request-idle-callbac
 
 import { routes, asyncRoutes, prefetchRouteCallbacks } from '../app/app.routes';
 import { APP_RESOLVER_PROVIDERS } from '../app/app.resolver';
+import { AUTH_PROVIDERS } from 'angular2-jwt/angular2-jwt';
+
 /*
  * Application Providers/Directives/Pipes
  * providers/directives/pipes that only live in our browser environment
@@ -34,7 +36,8 @@ export const APPLICATION_PROVIDERS = [
     providePrefetchIdleCallbacks(prefetchRouteCallbacks),
 
     ...HTTP_PROVIDERS,
-
+    ...AUTH_PROVIDERS,
+    
     { provide: LocationStrategy, useClass: HashLocationStrategy }
 ];
 

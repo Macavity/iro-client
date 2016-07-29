@@ -1,0 +1,8 @@
+
+module.exports = {
+    auth: {
+        url: 'Insert Auth Domain',
+        clientId: 'Insert Auth Client App ID',
+        callbackURL: 'Insert Auth callback URL'
+    }
+};

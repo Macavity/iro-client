@@ -11,14 +11,19 @@ import { UserService } from '../user/user.service';
 @Injectable()
 export class NavigationService {
 
-    topnav: Array<NavigationEntry> = [];
-    sidebar: Array<NavigationEntry> = [];
+    topnav: NavigationEntry[];
+    sidebar: NavigationEntry[];
 
     constructor(
         private userService: UserService
     ) {
 
         console.log("NavigationService", "isLoggedIn", this.userService.isLoggedIn);
+
+        // TODO: Check activated modules and load navigation for each module
+
+        this.topnav = [];
+
 
         this.sidebar = [
             new NavigationEntry("Cockpit", "/Cockpit", "", []),
